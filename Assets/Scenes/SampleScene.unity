@@ -198,8 +198,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -1}
+  m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -215,7 +215,7 @@ GameObject:
   - component: {fileID: 2141695308}
   - component: {fileID: 2141695307}
   - component: {fileID: 2141695309}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Platform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -280,8 +280,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2141695306}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.315, y: -3.21, z: 1}
-  m_LocalScale: {x: 7.8589754, y: 1.810806, z: 1}
+  m_LocalPosition: {x: 0.315, y: -3.21, z: 0}
+  m_LocalScale: {x: 7.8589754, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
@@ -299,7 +299,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.050048023}
+  m_Offset: {x: 0, y: -0.09809722}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -310,7 +310,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 0.89990395}
+  m_Size: {x: 1, y: 0.8038056}
   m_EdgeRadius: 0
 --- !u!1001 &7295334108173403093
 PrefabInstance:
@@ -337,17 +337,17 @@ PrefabInstance:
     - target: {fileID: 4823977644903452761, guid: 36001cedb1b775a4db7015dae8c0b485,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.05
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4823977644903452761, guid: 36001cedb1b775a4db7015dae8c0b485,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.42
+      value: -2
       objectReference: {fileID: 0}
     - target: {fileID: 4823977644903452761, guid: 36001cedb1b775a4db7015dae8c0b485,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4823977644903452761, guid: 36001cedb1b775a4db7015dae8c0b485,
         type: 3}
@@ -398,6 +398,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_TagString
       value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: 8126340747596046474, guid: 36001cedb1b775a4db7015dae8c0b485,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 36001cedb1b775a4db7015dae8c0b485, type: 3}
@@ -485,3 +490,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fd8d8a0616571345b10c226ee257f24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 7295334108173403095}
