@@ -1,16 +1,15 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public Animator animator;
-    public BoxCollider2D m_collider;
-    public float speed;
     public Vector2 scale;
-    public bool Crouch;
-    public float jump;
-    public bool jumpBool;
+    public BoxCollider2D m_collider;
+    public Animator animator;
+    public float _defX = 0.42f, _defY = 1.99f;
+    public float speed;
     private void Start()
     {
         scale = transform.localScale;
@@ -19,72 +18,74 @@ public class PlayerController : MonoBehaviour
     }
     private void Update()
     {
-        //Task1
-        HorizontalKeysRun();
-        ControlBtnCrouch();
-        ResizeCollider();
-        //Task2
-        VerticalKeysJump();
+        bool Crouch = Input.GetKey(KeyCode.LeftControl);
+        float vertical = Input.GetAxisRaw("Jump");
+        float horizontal = Input.GetAxisRaw("Horizontal");
+
+        PlayMovementAnimation(horizontal, vertical);
+        ControlBtnCrouch(Crouch);
+        ResizeCollider(Crouch);
+        MoveCharacter(horizontal, vertical);
     }
 
-    private void HorizontalKeysRun()
+    private void MoveCharacter(float horizontal, float vertical)
+    {
+        //move character horizontally
+        Vector3 position = transform.position;
+        //speed * Time.deltaTime == (Distance / Time) * (1 / Frames per second)
+        position.x += horizontal * speed * Time.deltaTime;
+        transform.position = position;
+
+        //move character vertically
+        if (vertical > 0)
+        {
+
+        }
+    }
+
+    private void PlayMovementAnimation(float horizontal, float vertical)
     {
         // Get Input from Left Right keys and Run on that sides
-        speed = Input.GetAxisRaw("Horizontal");
-        animator.SetFloat("Speed", Mathf.Abs(speed));
-        if (speed < 0)
+        animator.SetFloat("Speed", Mathf.Abs(horizontal));
+        if (horizontal < 0)
         {
             scale.x = -1f * Mathf.Abs(scale.x);
         }
-        else if (speed > 0)
+        else if (horizontal > 0)
         {
             scale.x = Mathf.Abs(scale.x);
         }
         transform.localScale = scale;
+
+        // Get Input from Up down keys and Run Jump Animations
+        if (vertical > 0)
+        {
+            animator.SetBool("Jump", true);
+        }
+        else
+        {
+            animator.SetBool("Jump", false);
+        }
     }
 
-    private void ControlBtnCrouch()
+    private void ControlBtnCrouch(bool Crouch)
     {
         // If we pressed LeftControl key then it plays Crouch animation
-        Crouch = Input.GetKey(KeyCode.LeftControl);
         animator.SetBool("isCrouch", Crouch);
-        //if (Input.GetKey(KeyCode.LeftControl))
-        //{
-        //    animator.SetBool("isCrouch", true);
-        //}
-        //else
-        //{
-        //    animator.SetBool("isCrouch", false);
-        //}
     }
 
-    private void ResizeCollider()
+    private void ResizeCollider(bool Crouch)
     {
+        float resX = 0.42f;
+        float resY = 1.2f;
         //resize collider
         if (Crouch == true)
         {
-            m_collider.size = new Vector2(0.42f, 1.2f);
+            m_collider.size = new Vector2(resX, resY);
         }
         else
         {
-            m_collider.size = new Vector2(0.42f, 1.99f);
-        }
-    }
-
-    private void VerticalKeysJump()
-    {
-        // Get Input from Up down keys and Run Jump Animations
-        jump = Input.GetAxisRaw("Vertical");
-        jumpBool = false;
-        if (jump == 1)
-        {
-            jumpBool = true;
-            animator.SetBool("Jump", jumpBool);
-        }
-        else
-        {
-            jumpBool = false;
-            animator.SetBool("Jump", jumpBool);
+            m_collider.size = new Vector2(_defX, _defY);
         }
     }
 }
