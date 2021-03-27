@@ -10,6 +10,13 @@ public class PlayerController : MonoBehaviour
     public Animator animator;
     public float _defX = 0.42f, _defY = 1.99f;
     public float speed;
+    private Rigidbody2D rb2d;
+    public float jump;
+
+    private void Awake()
+    {
+        rb2d = gameObject.GetComponent<Rigidbody2D>();
+    }
     private void Start()
     {
         scale = transform.localScale;
@@ -39,7 +46,7 @@ public class PlayerController : MonoBehaviour
         //move character vertically
         if (vertical > 0)
         {
-
+            rb2d.AddForce(new Vector2(0, jump), ForceMode2D.Force);
         }
     }
 
@@ -82,6 +89,7 @@ public class PlayerController : MonoBehaviour
         if (Crouch == true)
         {
             m_collider.size = new Vector2(resX, resY);
+            //m_collider.offset = new Vector2(resX, resY);
         }
         else
         {
