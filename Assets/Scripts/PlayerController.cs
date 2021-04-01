@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -11,7 +12,17 @@ public class PlayerController : MonoBehaviour
     public float _defX = 0.42f, _defY = 1.99f;
     public float speed;
     private Rigidbody2D rb2d;
-    public float jump;
+    public float Jump;
+    private bool isJump = false;
+    private Vector3 position;
+    public void OnCollisionEnter2D(Collision2D collision)
+    {
+        Debug.Log("Entered into Collision");
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            isJump = true;
+        }
+    }
 
     private void Awake()
     {
@@ -28,26 +39,35 @@ public class PlayerController : MonoBehaviour
         bool Crouch = Input.GetKey(KeyCode.LeftControl);
         float vertical = Input.GetAxisRaw("Jump");
         float horizontal = Input.GetAxisRaw("Horizontal");
+        position = transform.position;
 
         PlayMovementAnimation(horizontal, vertical);
         ControlBtnCrouch(Crouch);
         ResizeCollider(Crouch);
-        MoveCharacter(horizontal, vertical);
+        MoveCharacter(horizontal);
+        deathRestart();
     }
 
-    private void MoveCharacter(float horizontal, float vertical)
+    private void deathRestart()
+    {
+        if(position.y < -10)
+        {
+            SceneManager.LoadScene(0);
+        }
+    }
+
+    private void MoveCharacter(float horizontal)
     {
         //move character horizontally
-        Vector3 position = transform.position;
         //speed * Time.deltaTime == (Distance / Time) * (1 / Frames per second)
         position.x += horizontal * speed * Time.deltaTime;
         transform.position = position;
 
         //move character vertically
-        if (vertical > 0)
-        {
-            rb2d.AddForce(new Vector2(0, jump), ForceMode2D.Force);
-        }
+        //if (vertical > 0)
+        //{
+        //    rb2d.AddForce(new Vector2(0, Jump), ForceMode2D.Force);
+        //}
     }
 
     private void PlayMovementAnimation(float horizontal, float vertical)
@@ -65,9 +85,11 @@ public class PlayerController : MonoBehaviour
         transform.localScale = scale;
 
         // Get Input from Up down keys and Run Jump Animations
-        if (vertical > 0)
+        if (vertical > 0 && isJump)
         {
-            animator.SetBool("Jump", true);
+            animator.SetBool("Jump", isJump);
+            rb2d.AddForce(new Vector2(0, Jump), ForceMode2D.Force);
+            isJump = false;
         }
         else
         {
