@@ -3461,12 +3461,17 @@ PrefabInstance:
     - target: {fileID: 7295334108173403096, guid: 36001cedb1b775a4db7015dae8c0b485,
         type: 3}
       propertyPath: m_Mass
-      value: 10
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7295334108173403096, guid: 36001cedb1b775a4db7015dae8c0b485,
+        type: 3}
+      propertyPath: m_GravityScale
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7295334108173403100, guid: 36001cedb1b775a4db7015dae8c0b485,
         type: 3}
       propertyPath: Jump
-      value: 4000
+      value: 1200
       objectReference: {fileID: 0}
     - target: {fileID: 7295334108173403100, guid: 36001cedb1b775a4db7015dae8c0b485,
         type: 3}
