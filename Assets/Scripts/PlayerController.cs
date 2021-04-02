@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
+    public ScoreController scoreController; 
     public Vector2 scale;
     public BoxCollider2D m_collider;
     public Animator animator;
@@ -13,13 +14,22 @@ public class PlayerController : MonoBehaviour
     private Vector3 position;
     private float _DEFX = 0.42f, _DEFY = 1.99f;
     private float _DEFOX = 0.011f, _DEFOY = 0.98f;
+    private int _KeyCounter = 0;
+    internal void PickUpKey()
+    {
+        Debug.Log("Player Picked up a Key.");
+        _KeyCounter++;
+        scoreController.IncreaseScore(10);
+        Debug.Log("Key Collected: " + _KeyCounter);
+    }
+
     [SerializeField] private float speed;
     [SerializeField] private float Jump;
     private bool isJump = false;
     
     public void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log("Entered into Collision");
+        //Debug.Log("Entered into Collision");
         if (collision.gameObject.CompareTag("Ground"))
         {
             isJump = true;
