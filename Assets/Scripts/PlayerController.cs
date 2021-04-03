@@ -15,6 +15,8 @@ public class PlayerController : MonoBehaviour
     private float _DEFX = 0.42f, _DEFY = 1.99f;
     private float _DEFOX = 0.011f, _DEFOY = 0.98f;
     private int _KeyCounter = 0;
+    private String _JUMP_AXIS = "Jump";
+    private String _HORIZONTAL_AXIS = "Horizontal";
     internal void PickUpKey()
     {
         Debug.Log("Player Picked up a Key.");
@@ -49,8 +51,8 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         bool Crouch = Input.GetKey(KeyCode.LeftControl);
-        float vertical = Input.GetAxisRaw("Jump");
-        float horizontal = Input.GetAxisRaw("Horizontal");
+        float vertical = Input.GetAxisRaw(_JUMP_AXIS);
+        float horizontal = Input.GetAxisRaw(_HORIZONTAL_AXIS);
         position = transform.position;
 
         PlayMovementAnimation(horizontal, vertical);
