@@ -12,6 +12,7 @@ public class EnemyController : MonoBehaviour
         {
             PlayerController playerController = collision.gameObject.GetComponent<PlayerController>();
             Debug.Log("Enemy Collided with Player");
+            PlayerController.ReloadLevel(0);
         }
     }
 }

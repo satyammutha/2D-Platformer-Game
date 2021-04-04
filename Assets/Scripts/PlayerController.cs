@@ -15,6 +15,13 @@ public class PlayerController : MonoBehaviour
     private float _DEFX = 0.42f, _DEFY = 1.99f;
     private float _DEFOX = 0.011f, _DEFOY = 0.98f;
     private int _KeyCounter = 0;
+
+    internal static void ReloadLevel(int index)
+    {
+        Debug.Log("Reloading Scene.");
+        SceneManager.LoadScene(index);
+    }
+
     private String _JUMP_AXIS = "Jump";
     private String _HORIZONTAL_AXIS = "Horizontal";
     internal void PickUpKey()
