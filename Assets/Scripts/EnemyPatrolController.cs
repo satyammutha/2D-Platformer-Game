@@ -38,7 +38,7 @@ public class EnemyPatrolController : MonoBehaviour
         if (collision.gameObject.GetComponent<PlayerController>() != null)
         {
             Debug.Log("Enemy Collided with Player");
-            SceneManager.LoadScene(0);
+            SceneManager.LoadScene(1);
         }
     }
 }

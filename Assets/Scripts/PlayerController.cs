@@ -77,7 +77,7 @@ public class PlayerController : MonoBehaviour
         float characterDeadLine = -8f;
         if(position.y < characterDeadLine)
         {
-            SceneManager.LoadScene(0);
+            SceneManager.LoadScene(1);
         }
     }
 
