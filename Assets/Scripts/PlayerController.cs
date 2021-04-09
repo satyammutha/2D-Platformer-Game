@@ -6,7 +6,8 @@ using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
-    public ScoreController scoreController; 
+    public ScoreController scoreController;
+    public GameOverController gameOverController;
     public Vector2 scale;
     public BoxCollider2D m_collider;
     public Animator animator;
@@ -16,11 +17,13 @@ public class PlayerController : MonoBehaviour
     private float _DEFOX = 0.011f, _DEFOY = 0.98f;
     private int _KeyCounter = 0;
 
-    internal static void ReloadLevel(int index)
+    public void KillPlayer()
     {
-        Debug.Log("Reloading Scene.");
-        SceneManager.LoadScene(index);
+        Debug.Log("Player Killed by enemy");
+        gameOverController.PlayerDied();
+        this.enabled = false;
     }
+    
 
     private String _JUMP_AXIS = "Jump";
     private String _HORIZONTAL_AXIS = "Horizontal";

@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5.95, y: 0.88, z: -10}
+  m_LocalPosition: {x: 1.83, y: 1.14, z: -10}
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children: []
   m_Father: {fileID: 4823977644903452761}
@@ -41,7 +41,7 @@ Camera:
   m_GameObject: {fileID: 519420028}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
+  m_ClearFlags: 2
   m_BackGroundColor: {r: 0.3488341, g: 0.45898348, b: 0.6320754, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
@@ -55,7 +55,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
+  near clip plane: -0.1
   far clip plane: 1000
   field of view: 60
   orthographic: 1
@@ -82,7 +82,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!1 &5077761964698362273
 GameObject:
   m_ObjectHideFlags: 0
@@ -99,7 +99,7 @@ GameObject:
   - component: {fileID: 7295334108173403100}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -181,10 +181,10 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 5
+  m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 7
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -247,10 +247,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fd8d8a0616571345b10c226ee257f24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scoreController: {fileID: 0}
+  gameOverController: {fileID: 0}
   scale: {x: 0, y: 0}
   m_collider: {fileID: 0}
   animator: {fileID: 7295334108173403095}
-  _defX: 0.42
-  _defY: 1.99
   speed: 8
-  jump: 100
+  Jump: 1200

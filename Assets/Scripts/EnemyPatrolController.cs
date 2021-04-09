@@ -1,11 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EnemyPatrolController : MonoBehaviour
 {
     public Animator animator;
-
     public float speed;
     public float distance;
     private bool movingRight = true;
@@ -37,9 +37,8 @@ public class EnemyPatrolController : MonoBehaviour
     {
         if (collision.gameObject.GetComponent<PlayerController>() != null)
         {
-            PlayerController playerController = collision.gameObject.GetComponent<PlayerController>();
             Debug.Log("Enemy Collided with Player");
-            PlayerController.ReloadLevel(0);
+            SceneManager.LoadScene(0);
         }
     }
 }

@@ -20,7 +20,7 @@ public class EnemyController : MonoBehaviour
         Vector3 position = transform.position;
         if (isWalking)
         {
-            position.x += 2 * Time.deltaTime;
+            position.x += 1 * Time.deltaTime;
             transform.position = position;
         }
     }
@@ -31,7 +31,7 @@ public class EnemyController : MonoBehaviour
         {
             PlayerController playerController = collision.gameObject.GetComponent<PlayerController>();
             Debug.Log("Enemy Collided with Player");
-            PlayerController.ReloadLevel(0);
+            playerController.KillPlayer();
         }
     }
 }
