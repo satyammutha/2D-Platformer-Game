@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
 {
     public ScoreController scoreController;
     public GameOverController gameOverController;
+    private LivesManager livesManager;
     public Vector2 scale;
     public BoxCollider2D m_collider;
     public Animator animator;
@@ -19,7 +20,7 @@ public class PlayerController : MonoBehaviour
 
     public void KillPlayer()
     {
-        Debug.Log("Player Killed by enemy");
+        //Debug.Log("Player Killed by enemy");
         gameOverController.PlayerDied();
         this.enabled = false;
     }
@@ -54,6 +55,7 @@ public class PlayerController : MonoBehaviour
     }
     private void Start()
     {
+        livesManager = FindObjectOfType<LivesManager>();
         scale = transform.localScale;
         m_collider = GetComponent<BoxCollider2D>();
         m_collider.size = new Vector2(0.42f, 1.99f);
@@ -77,7 +79,10 @@ public class PlayerController : MonoBehaviour
         float characterDeadLine = -8f;
         if(position.y < characterDeadLine)
         {
-            SceneManager.LoadScene(1);
+            livesManager.recX = 5.43f;
+            livesManager.recY = -2.37f;
+            livesManager.TakeLife();
+            //SceneManager.LoadScene(1);
         }
     }
 

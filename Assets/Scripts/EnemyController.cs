@@ -6,9 +6,13 @@ using UnityEngine;
 public class EnemyController : MonoBehaviour
 {
     public Animator animator;
-
+    private LivesManager livesManager;
     public bool isWalking;
 
+    private void Start()
+    {
+        livesManager = FindObjectOfType<LivesManager>();
+    }
     private void Update()
     {
         isWalking = true;
@@ -31,7 +35,9 @@ public class EnemyController : MonoBehaviour
         {
             PlayerController playerController = collision.gameObject.GetComponent<PlayerController>();
             Debug.Log("Enemy Collided with Player");
-            playerController.KillPlayer();
+            livesManager.recX = 17.26647f;
+            livesManager.recY = -2.455f;
+            livesManager.TakeLife();
         }
     }
 }
