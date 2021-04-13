@@ -5,17 +5,15 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-
-public class RestartGameController : MonoBehaviour
+public class LobbyController : MonoBehaviour
 {
-    public Button button;
-    
-    private void Start()
+    public Button buttonPlay;
+    private void Awake()
     {
-        button.onClick.AddListener(OnButtonClick);
+        buttonPlay.onClick.AddListener(PlayGame);
     }
 
-    private void OnButtonClick()
+    private void PlayGame()
     {
         SceneManager.LoadScene(1);
     }

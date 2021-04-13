@@ -1,16 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EnemyPatrolController : MonoBehaviour
 {
     public Animator animator;
-
+    private LivesManager livesManager;
     public float speed;
     public float distance;
     private bool movingRight = true;
     public Transform groundDetection;
 
+    private void Start()
+    {
+        livesManager = FindObjectOfType<LivesManager>();
+    }
 
     private void Update()
     {
@@ -37,9 +42,11 @@ public class EnemyPatrolController : MonoBehaviour
     {
         if (collision.gameObject.GetComponent<PlayerController>() != null)
         {
-            PlayerController playerController = collision.gameObject.GetComponent<PlayerController>();
             Debug.Log("Enemy Collided with Player");
-            PlayerController.ReloadLevel(0);
+            livesManager.recX = 24.24f;
+            livesManager.recY = 5.0f;
+            livesManager.TakeLife();
+            //SceneManager.LoadScene(1);
         }
     }
 }
