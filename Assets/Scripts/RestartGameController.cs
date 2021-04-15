@@ -9,7 +9,7 @@ using UnityEngine.UI;
 public class RestartGameController : MonoBehaviour
 {
     public Button button;
-    
+
     private void Start()
     {
         button.onClick.AddListener(OnButtonClick);
@@ -17,6 +17,6 @@ public class RestartGameController : MonoBehaviour
 
     private void OnButtonClick()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(0);
     }
 }

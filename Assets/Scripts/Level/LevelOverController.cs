@@ -11,8 +11,9 @@ public class LevelOverController : MonoBehaviour
         //Avoid tag compare, you may set player tag to anyone by mistake
         if (collision.gameObject.GetComponent<PlayerController>())
         {
-            Debug.Log("Level Finished by Player");
-            SceneManager.LoadScene(2);
+            Debug.Log("Level Completed by Player");
+            LevelManager.Instance.MarkCurrentLevelComplete();
+            SceneManager.LoadScene(5);
         }
     }
 }
