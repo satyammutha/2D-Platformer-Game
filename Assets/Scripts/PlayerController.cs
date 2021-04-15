@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour
     private float _DEFX = 0.42f, _DEFY = 1.99f;
     private float _DEFOX = 0.011f, _DEFOY = 0.98f;
     private int _KeyCounter = 0;
-
+    
     public void KillPlayer()
     {
         //Debug.Log("Player Killed by enemy");
@@ -52,6 +52,7 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         rb2d = gameObject.GetComponent<Rigidbody2D>();
+        
     }
     private void Start()
     {

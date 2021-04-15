@@ -250,7 +250,7 @@ MonoBehaviour:
   scoreController: {fileID: 0}
   gameOverController: {fileID: 0}
   scale: {x: 0, y: 0}
-  m_collider: {fileID: 0}
+  m_collider: {fileID: 7295334108173403097}
   animator: {fileID: 7295334108173403095}
   speed: 8
   Jump: 1200

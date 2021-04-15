@@ -30,8 +30,9 @@ public class GameOverController : MonoBehaviour
     }
     public void ReloadLevel()
     {
-        int index = 1;
-        Debug.Log("Reloading Scene: " + index);
-        SceneManager.LoadScene(index);
+        Debug.Log("Reloading Scene:.. ");
+        //SceneManager.LoadScene(1);
+        Scene scene = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(scene.buildIndex);
     }
 }
