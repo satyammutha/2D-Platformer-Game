@@ -242,7 +242,7 @@ GameObject:
   - component: {fileID: 5484863236673236538}
   - component: {fileID: 5484863236673236517}
   - component: {fileID: 5484863236673236516}
-  - component: {fileID: 5484863236673236539}
+  - component: {fileID: 4039338048592129203}
   m_Layer: 5
   m_Name: ButtonLobby
   m_TagString: Untagged
@@ -350,7 +350,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &5484863236673236539
+--- !u!114 &4039338048592129203
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -362,8 +362,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53ec2af9b364a184eb0deca327f09304, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameOverController: {fileID: 5484863236753942316}
-  yourGameObj: {fileID: 5484863236753942312}
   LevelName: Lobby
 --- !u!1 &5484863236678656108
 GameObject:
@@ -576,6 +574,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buttonRestart: {fileID: 5484863236678656098}
+  buttonLobby: {fileID: 5484863236673236516}
   finalScore: {fileID: 5484863236942868840}
 --- !u!1 &5484863236942868842
 GameObject:
@@ -724,4 +723,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buttonRestart: {fileID: 5484863236678656098}
+  buttonLobby: {fileID: 0}
   finalScore: {fileID: 5484863236942868840}

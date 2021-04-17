@@ -7,7 +7,6 @@ using UnityEngine.UI;
 [RequireComponent(typeof(Button))]
 public class LevelLoader : MonoBehaviour
 {
-    //public GameObject yourGameObj;
     private Button button;
     public string LevelName;
 
@@ -15,20 +14,22 @@ public class LevelLoader : MonoBehaviour
     {
         button = GetComponent<Button>();
         button.onClick.AddListener(OnClick);
-        //yourGameObj = GameObject.Find("GameOver");
-    }
+        }
 
     private void OnClick()
     {
-        if(LevelName == "Lobby")
+        LevelStatus levelStatus = LevelManager.Instance.GetLevelStatus(LevelName);
+        switch (levelStatus)
         {
-            this.enabled = false;
-            //yourGameObj.SetActive(false);
-            SceneManager.LoadScene("Lobby");
-        }
-        else
-        {
-            SceneManager.LoadScene(LevelName);
+            case LevelStatus.Locked:
+                Debug.Log("Can't play level without unlocked");
+                break;
+            case LevelStatus.Unlocked:
+                SceneManager.LoadScene(LevelName);
+                break;
+            case LevelStatus.Completed:
+                SceneManager.LoadScene(LevelName);
+                break;
         }
         //SceneManager.LoadScene(LevelName);
     }

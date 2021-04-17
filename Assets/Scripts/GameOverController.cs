@@ -4,11 +4,13 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
+using System;
 
 public class GameOverController : MonoBehaviour
 {
     private ScoreController scoreController;
     public Button buttonRestart;
+    public Button buttonLobby;
     public TextMeshProUGUI finalScore;
     private int finalScoreText;
     private void Awake()
@@ -21,6 +23,7 @@ public class GameOverController : MonoBehaviour
 
     private void Start()
     {
+        //buttonLobby.onClick.AddListener(BackToLobby);
         Debug.Log("Final Score:"+finalScoreText);
         finalScore.text = "Final Score :" + finalScoreText;
     }
@@ -34,5 +37,9 @@ public class GameOverController : MonoBehaviour
         //SceneManager.LoadScene(1);
         Scene scene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(scene.buildIndex);
+    }
+    private void BackToLobby()
+    {
+        SceneManager.LoadScene(0);
     }
 }
