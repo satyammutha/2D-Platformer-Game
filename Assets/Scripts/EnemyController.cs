@@ -35,8 +35,8 @@ public class EnemyController : MonoBehaviour
         {
             PlayerController playerController = collision.gameObject.GetComponent<PlayerController>();
             Debug.Log("Enemy Collided with Player");
-            livesManager.recX = 17.26647f;
-            livesManager.recY = -2.455f;
+            livesManager.recX = 7f;
+            livesManager.recY = -2.23f;
             livesManager.TakeLife();
         }
     }

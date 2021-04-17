@@ -8,7 +8,6 @@ public class LevelManager : MonoBehaviour
 {
     private static LevelManager instance;
     public static LevelManager Instance { get { return instance; } }
-    public string Level1;
     public string[] Levels;
     private void Awake()
     {
