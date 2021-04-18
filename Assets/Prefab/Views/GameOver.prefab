@@ -242,7 +242,8 @@ GameObject:
   - component: {fileID: 5484863236673236538}
   - component: {fileID: 5484863236673236517}
   - component: {fileID: 5484863236673236516}
-  - component: {fileID: 4039338048592129203}
+  - component: {fileID: 7038097297688924940}
+  - component: {fileID: 781596359044888983}
   m_Layer: 5
   m_Name: ButtonLobby
   m_TagString: Untagged
@@ -350,7 +351,20 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &4039338048592129203
+--- !u!114 &7038097297688924940
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5484863236673236518}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf30eb906686db94f8dcf287eb6928cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  button: {fileID: 5484863236673236516}
+--- !u!114 &781596359044888983
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -574,7 +588,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buttonRestart: {fileID: 5484863236678656098}
-  buttonLobby: {fileID: 5484863236673236516}
   finalScore: {fileID: 5484863236942868840}
 --- !u!1 &5484863236942868842
 GameObject:
@@ -723,5 +736,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buttonRestart: {fileID: 5484863236678656098}
-  buttonLobby: {fileID: 0}
   finalScore: {fileID: 5484863236942868840}

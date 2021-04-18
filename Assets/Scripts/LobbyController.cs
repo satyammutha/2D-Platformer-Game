@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.SceneManagement;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class LobbyController : MonoBehaviour
@@ -17,7 +13,6 @@ public class LobbyController : MonoBehaviour
 
     public void PlayGame()
     {
-        //SceneManager.LoadScene(1);
         LevelSelection.SetActive(true);
     }
 }

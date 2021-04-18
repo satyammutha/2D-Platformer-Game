@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -18,6 +16,7 @@ public class LevelLoader : MonoBehaviour
 
     private void OnClick()
     {
+        Debug.Log("LevelName:"+LevelName);
         LevelStatus levelStatus = LevelManager.Instance.GetLevelStatus(LevelName);
         switch (levelStatus)
         {
@@ -28,9 +27,9 @@ public class LevelLoader : MonoBehaviour
                 SceneManager.LoadScene(LevelName);
                 break;
             case LevelStatus.Completed:
+                Debug.Log("Level is already completed");
                 SceneManager.LoadScene(LevelName);
                 break;
         }
-        //SceneManager.LoadScene(LevelName);
     }
 }
