@@ -5573,6 +5573,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5484863236753942316, guid: 93cf11590a6419146ba06ff9335b35fa,
+        type: 3}
+      propertyPath: audioSource
+      value: 
+      objectReference: {fileID: 7295334108173403094}
+    - target: {fileID: 5484863236753942316, guid: 93cf11590a6419146ba06ff9335b35fa,
+        type: 3}
+      propertyPath: playerController
+      value: 
+      objectReference: {fileID: 7295334108173403095}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 93cf11590a6419146ba06ff9335b35fa, type: 3}
 --- !u!1001 &7295334108173403093
@@ -5657,8 +5667,31 @@ PrefabInstance:
       propertyPath: gameOverController
       value: 
       objectReference: {fileID: 831618406}
+    - target: {fileID: 7877263491836246525, guid: 36001cedb1b775a4db7015dae8c0b485,
+        type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 36001cedb1b775a4db7015dae8c0b485, type: 3}
+--- !u!82 &7295334108173403094 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 7877263491836246525, guid: 36001cedb1b775a4db7015dae8c0b485,
+    type: 3}
+  m_PrefabInstance: {fileID: 7295334108173403093}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7295334108173403095 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7295334108173403100, guid: 36001cedb1b775a4db7015dae8c0b485,
+    type: 3}
+  m_PrefabInstance: {fileID: 7295334108173403093}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3fd8d8a0616571345b10c226ee257f24, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &7308815000743376063
 PrefabInstance:
   m_ObjectHideFlags: 0

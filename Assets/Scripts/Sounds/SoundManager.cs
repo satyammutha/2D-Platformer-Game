@@ -5,7 +5,7 @@ public class SoundManager : MonoBehaviour
 {
     private static SoundManager instance;
     public static SoundManager Instance { get { return instance; } }
-    public AudioSource soundEffect, soundBgMusic, soundDeath;
+    public AudioSource soundEffect, soundMusic;
     public SoundType[] Sounds;
     private void Awake()
     {
@@ -25,26 +25,13 @@ public class SoundManager : MonoBehaviour
         PlayBgMusic(SoundsForEvents.BgMusic);
     }
 
-    public void PlayDeathMusic(SoundsForEvents sound)
-    {
-        AudioClip clip = GetSoundClip(sound);
-        if (clip != null)
-        {
-            soundDeath.PlayOneShot(clip);
-        }
-        else
-        {
-            Debug.Log("Clip not found for sound type:" + sound);
-        }
-    }
-
     public void PlayBgMusic(SoundsForEvents sound)
     {
         AudioClip clip = GetSoundClip(sound);
         if(clip != null)
         {
-            soundBgMusic.clip = clip;
-            soundBgMusic.Play();
+            soundMusic.clip = clip;
+            soundMusic.Play();
         }
         else
         {
@@ -67,6 +54,7 @@ public class SoundManager : MonoBehaviour
 
     private AudioClip GetSoundClip(SoundsForEvents sound)
     {
+        
         SoundType item = Array.Find(Sounds, i => i.soundType == sound);
         if (item != null)
             return item.soundClip;

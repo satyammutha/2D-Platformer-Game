@@ -23,13 +23,8 @@ public class LivesManager : MonoBehaviour
     private void Update()
     {
         
-        lives.text = "x " + livesCounter;
-        charaPosition = playerController.transform.position;
-        if(livesCounter < 1)
-        {
-            //Debug.Log("Game Over");
-            playerController.KillPlayer();
-        }
+        
+        
     }
     public void TakeLife()
     {
@@ -38,6 +33,13 @@ public class LivesManager : MonoBehaviour
         charaPosition.x = recX;
         charaPosition.y = recY;
         playerController.transform.position = charaPosition;
-        
+        lives.text = "x " + livesCounter;
+        charaPosition = playerController.transform.position;
+        if (livesCounter < 1)
+        {
+            //Debug.Log("Game Over");
+            playerController.KillPlayer();
+        }
+
     }
 }

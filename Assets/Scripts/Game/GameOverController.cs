@@ -2,6 +2,8 @@
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
+using System;
+
 public class GameOverController : MonoBehaviour
 {
     private ScoreController scoreController;
@@ -24,9 +26,10 @@ public class GameOverController : MonoBehaviour
     }
     public void PlayerDied()
     {
-        SoundManager.Instance.PlayDeathMusic(SoundsForEvents.PlayerDeath);
+        SoundManager.Instance.Play(SoundsForEvents.PlayerDeath);
         gameObject.SetActive(true);
     }
+
     public void ReloadLevel()
     {
         Debug.Log("Reloading Scene:.. ");

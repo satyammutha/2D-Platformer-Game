@@ -88,6 +88,7 @@ public class PlayerController : MonoBehaviour
         //speed * Time.deltaTime == (Distance / Time) * (1 / Frames per second)
         position.x += horizontal * speed * Time.deltaTime;
         transform.position = position;
+        SoundManager.Instance.Play(SoundsForEvents.PlayerMove);
     }
 
     private void PlayMovementAnimation(float horizontal, float vertical)
