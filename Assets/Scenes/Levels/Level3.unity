@@ -5624,11 +5624,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7295334108173403100, guid: 36001cedb1b775a4db7015dae8c0b485,
         type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7295334108173403100, guid: 36001cedb1b775a4db7015dae8c0b485,
-        type: 3}
       propertyPath: scoreController
       value: 
       objectReference: {fileID: 1685723169}

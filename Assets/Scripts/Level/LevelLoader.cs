@@ -24,10 +24,12 @@ public class LevelLoader : MonoBehaviour
                 Debug.Log("Can't play level without unlocked");
                 break;
             case LevelStatus.Unlocked:
+                SoundManager.Instance.Play(SoundsForEvents.ButtonClick);
                 SceneManager.LoadScene(LevelName);
                 break;
             case LevelStatus.Completed:
                 Debug.Log("Level is already completed");
+                SoundManager.Instance.Play(SoundsForEvents.ButtonClick);
                 SceneManager.LoadScene(LevelName);
                 break;
         }

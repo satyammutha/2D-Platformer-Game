@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -67,7 +64,6 @@ public class PlayerController : MonoBehaviour
         float vertical = Input.GetAxisRaw(_JUMP_AXIS);
         float horizontal = Input.GetAxisRaw(_HORIZONTAL_AXIS);
         position = transform.position;
-
         PlayMovementAnimation(horizontal, vertical);
         ControlBtnCrouch(Crouch);
         ResizeCollider(Crouch);
@@ -83,7 +79,6 @@ public class PlayerController : MonoBehaviour
             livesManager.recX = 5.43f;
             livesManager.recY = -2.37f;
             livesManager.TakeLife();
-            //SceneManager.LoadScene(1);
         }
     }
 
@@ -96,13 +91,13 @@ public class PlayerController : MonoBehaviour
     }
 
     private void PlayMovementAnimation(float horizontal, float vertical)
-    {
+    {        
         // Get Input from Left Right keys and Run on that sides
         animator.SetFloat("Speed", Mathf.Abs(horizontal));
         scale.x = horizontal < 0 ? -1f * Mathf.Abs(scale.x) : Mathf.Abs(scale.x) ;
         transform.localScale = scale;
 
-        // Get Input from Up down keys and Run Jump Animations
+        // Get Input from Spacebar key and Run Jump Animations
         if (vertical > 0 && isJump)
         {
             animator.SetBool("Jump", isJump);

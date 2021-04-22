@@ -13,6 +13,7 @@ public class LobbyController : MonoBehaviour
 
     public void PlayGame()
     {
+        SoundManager.Instance.Play(SoundsForEvents.ButtonClick);
         LevelSelection.SetActive(true);
     }
 }
