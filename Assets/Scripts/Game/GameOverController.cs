@@ -8,9 +8,9 @@ public class GameOverController : MonoBehaviour
 {
     private ScoreController scoreController;
     public Button buttonRestart;
-    //public Button buttonLobby;
     public TextMeshProUGUI finalScore;
     private int finalScoreText;
+    [SerializeField] private ParticleController bombBlast;
     private void Awake()
     {
         buttonRestart.onClick.AddListener(ReloadLevel);
@@ -27,6 +27,7 @@ public class GameOverController : MonoBehaviour
     public void PlayerDied()
     {
         SoundManager.Instance.PlayOnce(SoundsForEvents.PlayerDeath);
+        bombBlast.PlayEffect();
         gameObject.SetActive(true);
     }
 

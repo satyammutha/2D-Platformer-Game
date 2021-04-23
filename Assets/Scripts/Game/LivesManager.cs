@@ -34,7 +34,6 @@ public class LivesManager : MonoBehaviour
         playerController.transform.position = charaPosition;
         if (livesCounter < 1)
         {
-            //Debug.Log("Game Over");
             playerController.KillPlayer();
         }
 

@@ -11,7 +11,6 @@ public class EnemyPatrolController : MonoBehaviour
     public float distance;
     private bool movingRight = true;
     public Transform groundDetection;
-
     private void Start()
     {
         livesManager = FindObjectOfType<LivesManager>();
@@ -47,7 +46,6 @@ public class EnemyPatrolController : MonoBehaviour
             livesManager.recX = 22.91f;
             livesManager.recY = -6.42f;
             livesManager.TakeLife();
-            //SceneManager.LoadScene(1);
         }
     }
 }
