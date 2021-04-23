@@ -43,6 +43,7 @@ public class EnemyPatrolController : MonoBehaviour
         if (collision.gameObject.GetComponent<PlayerController>() != null)
         {
             Debug.Log("Enemy Collided with Player");
+            SoundManager.Instance.PlayOnce(SoundsForEvents.PlayerKilled);
             livesManager.recX = 22.91f;
             livesManager.recY = -6.42f;
             livesManager.TakeLife();

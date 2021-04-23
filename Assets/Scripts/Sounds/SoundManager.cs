@@ -22,10 +22,10 @@ public class SoundManager : MonoBehaviour
 
     private void Start()
     {
-        PlayBgMusic(SoundsForEvents.BgMusic);
+        PlayMusic(SoundsForEvents.BgMusic);
     }
 
-    public void PlayBgMusic(SoundsForEvents sound)
+    public void PlayMusic(SoundsForEvents sound)
     {
         AudioClip clip = GetSoundClip(sound);
         if(clip != null)
@@ -39,7 +39,7 @@ public class SoundManager : MonoBehaviour
         }
     }
 
-    public void Play(SoundsForEvents sound)
+    public void PlayOnce(SoundsForEvents sound)
     {
         AudioClip clip = GetSoundClip(sound);
         if(clip != null)
@@ -71,9 +71,16 @@ public class SoundType
 
 public enum SoundsForEvents
 {
-    ButtonClick,
+    ButtonPlayClick,
+    ButtonEnterLevelClick,
     BgMusic,
-    PlayerMove,
+    PlayerStepJump,
+    PlayerStepJumpLand,
+    PlayerJump,
     PlayerDeath,
-    EnemyDeath
+    KeyPickup,
+    LevelComplete,
+    BackButton,
+    DisableClick,
+    PlayerKilled
 }

@@ -14,7 +14,6 @@ public class PlayerController : MonoBehaviour
     private float _DEFX = 0.42f, _DEFY = 1.99f;
     private float _DEFOX = 0.011f, _DEFOY = 0.98f;
     private int _KeyCounter = 0;
-    
     public void KillPlayer()
     {
         //Debug.Log("Player Killed by enemy");
@@ -28,6 +27,7 @@ public class PlayerController : MonoBehaviour
     internal void PickUpKey()
     {
         Debug.Log("Player Picked up a Key.");
+        SoundManager.Instance.PlayOnce(SoundsForEvents.KeyPickup);
         _KeyCounter++;
         scoreController.IncreaseScore(10);
         Debug.Log("Key Collected: " + _KeyCounter);
@@ -76,6 +76,7 @@ public class PlayerController : MonoBehaviour
         float characterDeadLine = -8f;
         if(position.y < characterDeadLine)
         {
+            SoundManager.Instance.PlayOnce(SoundsForEvents.PlayerKilled);
             livesManager.recX = 5.43f;
             livesManager.recY = -2.37f;
             livesManager.TakeLife();
@@ -88,7 +89,18 @@ public class PlayerController : MonoBehaviour
         //speed * Time.deltaTime == (Distance / Time) * (1 / Frames per second)
         position.x += horizontal * speed * Time.deltaTime;
         transform.position = position;
-        SoundManager.Instance.Play(SoundsForEvents.PlayerMove);
+    }
+    private void PlayJumpSound()
+    {
+        SoundManager.Instance.PlayOnce(SoundsForEvents.PlayerJump);
+    }
+    private void PlayStepJumpSound()
+    {
+        SoundManager.Instance.PlayOnce(SoundsForEvents.PlayerStepJump);
+    }
+    private void PlayStepJumpLandSound()
+    {
+        SoundManager.Instance.PlayOnce(SoundsForEvents.PlayerStepJumpLand);
     }
 
     private void PlayMovementAnimation(float horizontal, float vertical)

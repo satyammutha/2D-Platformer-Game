@@ -21,23 +21,20 @@ public class GameOverController : MonoBehaviour
 
     private void Start()
     {
-        Debug.Log("Final Score:"+finalScoreText);
+        Debug.Log("Final Score:" + finalScoreText);
         finalScore.text = "Final Score :" + finalScoreText;
     }
     public void PlayerDied()
     {
-        SoundManager.Instance.Play(SoundsForEvents.PlayerDeath);
+        SoundManager.Instance.PlayOnce(SoundsForEvents.PlayerDeath);
         gameObject.SetActive(true);
     }
 
     public void ReloadLevel()
     {
         Debug.Log("Reloading Scene:.. ");
+        SoundManager.Instance.PlayOnce(SoundsForEvents.ButtonEnterLevelClick);
         Scene scene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(scene.buildIndex);
     }
-    //private void BackToLobby()
-    //{
-    //    SceneManager.LoadScene(0);
-    //}
 }

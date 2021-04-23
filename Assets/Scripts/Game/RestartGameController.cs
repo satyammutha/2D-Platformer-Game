@@ -17,6 +17,7 @@ public class RestartGameController : MonoBehaviour
 
     private void OnButtonClick()
     {
+        SoundManager.Instance.PlayOnce(SoundsForEvents.BackButton);
         SceneManager.LoadScene(0);
     }
 }
