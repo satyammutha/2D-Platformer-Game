@@ -3,40 +3,36 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    [SerializeField] private BoxCollider2D m_collider;
+    [SerializeField] private Animator animator;
+    [SerializeField] private float speed;
+    [SerializeField] private float Jump;
     public ScoreController scoreController;
     public GameOverController gameOverController;
     private LivesManager livesManager;
-    public Vector2 scale;
-    public BoxCollider2D m_collider;
-    public Animator animator;
+    private String _JUMP_AXIS = "Jump";
+    private String _HORIZONTAL_AXIS = "Horizontal";
+    private Vector2 scale;
     private Rigidbody2D rb2d;
     private Vector3 position;
     private float _DEFX = 0.42f, _DEFY = 1.99f;
     private float _DEFOX = 0.011f, _DEFOY = 0.98f;
-    private int _KeyCounter = 0;
+    private int KeyCounter = 0;
+    private bool isJump = false;
+    
     public void KillPlayer()
     {
-        //Debug.Log("Player Killed by enemy");
         gameOverController.PlayerDied();
         this.enabled = false;
     }
-    
-
-    private String _JUMP_AXIS = "Jump";
-    private String _HORIZONTAL_AXIS = "Horizontal";
     internal void PickUpKey()
     {
         Debug.Log("Player Picked up a Key.");
         SoundManager.Instance.PlayOnce(SoundsForEvents.KeyPickup);
-        _KeyCounter++;
+        KeyCounter++;
         scoreController.IncreaseScore(10);
-        Debug.Log("Key Collected: " + _KeyCounter);
+        Debug.Log("Key Collected: " + KeyCounter);
     }
-
-    [SerializeField] private float speed;
-    [SerializeField] private float Jump;
-    private bool isJump = false;
-    
     public void OnCollisionEnter2D(Collision2D collision)
     {
         //Debug.Log("Entered into Collision");
@@ -45,15 +41,13 @@ public class PlayerController : MonoBehaviour
             isJump = true;
         }
     }
-
     private void Awake()
     {
         rb2d = gameObject.GetComponent<Rigidbody2D>();
-        
+        livesManager = FindObjectOfType<LivesManager>();
     }
     private void Start()
     {
-        livesManager = FindObjectOfType<LivesManager>();
         scale = transform.localScale;
         m_collider = GetComponent<BoxCollider2D>();
         m_collider.size = new Vector2(0.42f, 1.99f);

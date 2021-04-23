@@ -578,6 +578,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   soundEffect: {fileID: 5374525}
   soundMusic: {fileID: 71317632}
+  IsMute: 0
+  Volume: 1
   Sounds:
   - soundType: 0
     soundClip: {fileID: 8300000, guid: df6d1af64fdebb04d80a54b27b720509, type: 3}

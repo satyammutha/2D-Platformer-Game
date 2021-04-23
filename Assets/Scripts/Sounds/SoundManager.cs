@@ -5,8 +5,11 @@ public class SoundManager : MonoBehaviour
 {
     private static SoundManager instance;
     public static SoundManager Instance { get { return instance; } }
-    public AudioSource soundEffect, soundMusic;
-    public SoundType[] Sounds;
+    [SerializeField] private AudioSource soundEffect, soundMusic;
+    [SerializeField] private bool IsMute = false;
+    [Range(0.0f,1.0f)]
+    [SerializeField] private float Volume = 1.0f;
+    [SerializeField] private SoundType[] Sounds;
     private void Awake()
     {
         if(instance == null)
@@ -22,11 +25,24 @@ public class SoundManager : MonoBehaviour
 
     private void Start()
     {
+        SetVolume(0.5f);
         PlayMusic(SoundsForEvents.BgMusic);
     }
-
+    private void Mute(bool status)
+    {
+        IsMute = status;
+    }
+    private void SetVolume(float volume)
+    {
+        Volume = volume;
+        soundEffect.volume = Volume;
+        soundMusic.volume = Volume;
+    }
     public void PlayMusic(SoundsForEvents sound)
     {
+        if (IsMute)
+            return;
+
         AudioClip clip = GetSoundClip(sound);
         if(clip != null)
         {
@@ -41,6 +57,9 @@ public class SoundManager : MonoBehaviour
 
     public void PlayOnce(SoundsForEvents sound)
     {
+        if (IsMute)
+            return;
+
         AudioClip clip = GetSoundClip(sound);
         if(clip != null)
         {
