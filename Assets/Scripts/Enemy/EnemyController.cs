@@ -1,42 +1,43 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
-    public Animator animator;
-    private LivesManager livesManager;
-    public bool isWalking;
+    [SerializeField] private Animator animator;
+    [SerializeField] private LivesManager livesManager;
+    [SerializeField] private bool isWalking;
 
-    private void Start()
-    {
-        livesManager = FindObjectOfType<LivesManager>();
-    }
     private void Update()
     {
         isWalking = true;
-        EnemyMovement(isWalking);
+        EnemyMovement();
     }
 
-    private void EnemyMovement(bool isWalking)
+    private void EnemyMovement()
     {
         Vector3 position = transform.position;
+        if(position.y < -7)
+        {
+            isWalking = false;
+        }
         if (isWalking)
         {
             position.x += 1 * Time.deltaTime;
             transform.position = position;
         }
+        else
+        {
+            gameObject.SetActive(false);
+        }
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.GetComponent<PlayerController>() != null)
+        PlayerController playerController = collision.gameObject.GetComponent<PlayerController>();
+        if (playerController != null)
         {
-            PlayerController playerController = collision.gameObject.GetComponent<PlayerController>();
             Debug.Log("Enemy Collided with Player");
             SoundManager.Instance.PlayOnce(SoundsForEvents.PlayerKilled);
-            livesManager.recX = 7f;
-            livesManager.recY = -2.23f;
+            livesManager.recX = -1.5f;
+            livesManager.recY = -2f;
             livesManager.TakeLife();
         }
     }

@@ -2,26 +2,22 @@
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
-using System;
-
 public class GameOverController : MonoBehaviour
 {
-    private ScoreController scoreController;
-    public Button buttonRestart;
-    public TextMeshProUGUI finalScore;
-    private int finalScoreText;
+    [SerializeField] private TextMeshProUGUI finalScore;
+    [SerializeField] private Button buttonRestart;
     [SerializeField] private ParticleController bombBlast;
+    private ScoreController scoreController;
+    private int finalScoreText;
     private void Awake()
     {
-        buttonRestart.onClick.AddListener(ReloadLevel);
-        //buttonLobby.onClick.AddListener(BackToLobby);
         scoreController = FindObjectOfType<ScoreController>();
+        buttonRestart.onClick.AddListener(ReloadLevel);
         finalScoreText = scoreController.score;
     }
 
     private void Start()
     {
-        Debug.Log("Final Score:" + finalScoreText);
         finalScore.text = "Final Score :" + finalScoreText;
     }
     public void PlayerDied()

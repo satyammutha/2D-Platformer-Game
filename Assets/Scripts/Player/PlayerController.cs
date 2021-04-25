@@ -3,17 +3,17 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private BoxCollider2D m_collider;
-    [SerializeField] private Animator animator;
     [SerializeField] private float speed;
     [SerializeField] private float Jump;
-    public ScoreController scoreController;
-    public GameOverController gameOverController;
-    private LivesManager livesManager;
+    [SerializeField] private BoxCollider2D m_collider;
+    [SerializeField] private Animator animator;
+    [SerializeField] private ScoreController scoreController;
+    [SerializeField] private GameOverController gameOverController;
+    [SerializeField] private LivesManager livesManager;
+    [SerializeField] private Rigidbody2D rb2d;
     private String _JUMP_AXIS = "Jump";
     private String _HORIZONTAL_AXIS = "Horizontal";
     private Vector2 scale;
-    private Rigidbody2D rb2d;
     private Vector3 position;
     private float _DEFX = 0.42f, _DEFY = 1.99f;
     private float _DEFOX = 0.011f, _DEFOY = 0.98f;
@@ -41,15 +41,9 @@ public class PlayerController : MonoBehaviour
             isJump = true;
         }
     }
-    private void Awake()
-    {
-        rb2d = gameObject.GetComponent<Rigidbody2D>();
-        livesManager = FindObjectOfType<LivesManager>();
-    }
     private void Start()
     {
         scale = transform.localScale;
-        m_collider = GetComponent<BoxCollider2D>();
         m_collider.size = new Vector2(0.42f, 1.99f);
     }
     private void Update()
@@ -71,8 +65,8 @@ public class PlayerController : MonoBehaviour
         if(position.y < characterDeadLine)
         {
             SoundManager.Instance.PlayOnce(SoundsForEvents.PlayerKilled);
-            livesManager.recX = 5.43f;
-            livesManager.recY = -2.37f;
+            livesManager.recX = -1.5f;
+            livesManager.recY = -2f;
             livesManager.TakeLife();
         }
     }

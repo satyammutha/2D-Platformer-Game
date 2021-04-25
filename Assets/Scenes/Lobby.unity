@@ -901,6 +901,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53ec2af9b364a184eb0deca327f09304, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  button: {fileID: 392922608}
   LevelName: Level1
 --- !u!1 &547157476
 GameObject:
@@ -1506,6 +1507,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53ec2af9b364a184eb0deca327f09304, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  button: {fileID: 1043492079}
   LevelName: Level4
 --- !u!1 &1531119255
 GameObject:
@@ -1852,6 +1854,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53ec2af9b364a184eb0deca327f09304, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  button: {fileID: 1730436107}
   LevelName: Level2
 --- !u!1 &1752650955
 GameObject:
@@ -1985,6 +1988,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53ec2af9b364a184eb0deca327f09304, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  button: {fileID: 1752650957}
   LevelName: Level3
 --- !u!1 &1803945470
 GameObject:
