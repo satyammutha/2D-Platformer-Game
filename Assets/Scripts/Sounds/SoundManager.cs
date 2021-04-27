@@ -8,7 +8,7 @@ public class SoundManager : MonoBehaviour
     [SerializeField] private AudioSource soundEffect, soundMusic;
     [SerializeField] private bool IsMute = false;
     [Range(0.0f,1.0f)]
-    [SerializeField] private float Volume = 1.0f;
+    [SerializeField] private float Volume;
     [SerializeField] private SoundType[] Sounds;
     private void Awake()
     {
@@ -25,7 +25,7 @@ public class SoundManager : MonoBehaviour
 
     private void Start()
     {
-        SetVolume(0.5f);
+        SetVolume(Volume);
         PlayMusic(SoundsForEvents.BgMusic);
     }
     private void Mute(bool status)
