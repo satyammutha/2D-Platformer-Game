@@ -28,6 +28,5 @@ public class LivesManager : MonoBehaviour
         {
             playerController.KillPlayer();
         }
-
     }
 }

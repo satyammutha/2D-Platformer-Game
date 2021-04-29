@@ -4,7 +4,6 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float speed;
-    [SerializeField] private float Rotationspeed;
     [SerializeField] private float Jump;
     [SerializeField] private BoxCollider2D m_collider;
     [SerializeField] private Animator animator;
@@ -33,7 +32,7 @@ public class PlayerController : MonoBehaviour
         horizontal = Input.GetAxisRaw(_HORIZONTAL_AXIS);
         vertical = Input.GetAxisRaw(_JUMP_AXIS);
         Crouch = Input.GetKey(KeyCode.LeftControl);
-
+        
         PlayerMovement(horizontal);
         PlayerJump(vertical);
         ControlBtnCrouch(Crouch);
@@ -41,7 +40,7 @@ public class PlayerController : MonoBehaviour
     }
 
     private void PlayerMovement(float horizontal)
-    {
+    {   
         //move character horizontally
         position = transform.position;
         //speed * Time.deltaTime == (Distance / Time) * (1 / Frames per second)
@@ -49,11 +48,14 @@ public class PlayerController : MonoBehaviour
         transform.position = position;
 
         // Get Input from Left Right keys and Run on that sides
-        animator.SetFloat("Speed", Mathf.Abs(horizontal));
-        scale = transform.localScale;
-        scale.x = horizontal < 0 ? -1f * Mathf.Abs(scale.x) : Mathf.Abs(scale.x);
-        transform.localScale = scale;
-
+        if (isJump)
+        {
+            animator.SetFloat("Speed", Mathf.Abs(horizontal));
+            scale = transform.localScale;
+            scale.x = horizontal < 0 ? -1f * Mathf.Abs(scale.x) : Mathf.Abs(scale.x);
+            transform.localScale = scale;
+        }
+        
     }
     private void PlayerJump(float vertical)
     {
@@ -61,6 +63,7 @@ public class PlayerController : MonoBehaviour
         if (vertical > 0 && isJump)
         {
             animator.SetBool("Jump", isJump);
+            animator.SetFloat("Speed", 0);
             rb2d.AddForce(new Vector2(0, Jump), ForceMode2D.Force);
             isJump = false;
         }
@@ -78,7 +81,7 @@ public class PlayerController : MonoBehaviour
         float _RESOX = -0.012f;
         float _RESOY = 0.59f;
         //resize collider
-        if (Crouch == true)
+        if (Crouch)
         {
             m_collider.size = new Vector2(_RESX, _RESY);
             m_collider.offset = new Vector2(_RESOX, _RESOY);
@@ -117,16 +120,19 @@ public class PlayerController : MonoBehaviour
     public void OnCollisionEnter2D(Collision2D collision)
     {
         //Debug.Log("Entered into Collision");
-        if (collision.gameObject.CompareTag("Ground"))
+        if (collision.gameObject.name == "GroundTilemap")
         {
             isJump = true;
+            Debug.Log("Entered into Collision");
+            animator.SetFloat("Speed", 0f);
         }
     }
     private void OnCollisionExit2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Ground"))
+        if (collision.gameObject.name == "GroundTilemap")
         {
             isJump = false;
+            Debug.Log("Exited from Collision");
         }
     }
 
