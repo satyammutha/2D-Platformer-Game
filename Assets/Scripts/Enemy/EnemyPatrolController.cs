@@ -1,22 +1,13 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.SceneManagement;
+﻿using UnityEngine;
 
 public class EnemyPatrolController : MonoBehaviour
 {
-    public Animator animator;
-    private LivesManager livesManager;
-    public float speed;
-    public float distance;
+    [SerializeField] private float speed;
+    [SerializeField] private float distance;
+    [SerializeField] private Animator animator;
+    [SerializeField] private LivesManager livesManager;
+    [SerializeField] private Transform groundDetection;
     private bool movingRight = true;
-    public Transform groundDetection;
-
-    private void Start()
-    {
-        livesManager = FindObjectOfType<LivesManager>();
-    }
-
     private void Update()
     {
         transform.Translate(Vector2.right * speed * Time.deltaTime);
@@ -40,13 +31,14 @@ public class EnemyPatrolController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.GetComponent<PlayerController>() != null)
+        PlayerController playerController = collision.gameObject.GetComponent<PlayerController>();
+        if (playerController != null)
         {
             Debug.Log("Enemy Collided with Player");
-            livesManager.recX = 22.91f;
-            livesManager.recY = -6.42f;
+            SoundManager.Instance.PlayOnce(SoundsForEvents.PlayerKilled);
+            livesManager.recX = -1.5f;
+            livesManager.recY = -2f;
             livesManager.TakeLife();
-            //SceneManager.LoadScene(1);
         }
     }
 }

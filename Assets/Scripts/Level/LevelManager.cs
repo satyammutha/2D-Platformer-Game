@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -8,7 +6,7 @@ public class LevelManager : MonoBehaviour
 {
     private static LevelManager instance;
     public static LevelManager Instance { get { return instance; } }
-    public string[] Levels;
+    [SerializeField] private string[] Levels;
     private void Awake()
     {
         if(instance == null)
@@ -23,6 +21,7 @@ public class LevelManager : MonoBehaviour
     }
     private void Start()
     {
+        
         if(GetLevelStatus(Levels[0]) == LevelStatus.Locked)
         {
             SetLevelStatus(Levels[0], LevelStatus.Unlocked);
@@ -43,6 +42,13 @@ public class LevelManager : MonoBehaviour
         {
             SetLevelStatus(Levels[nextSceneIndex], LevelStatus.Unlocked);
         }
+        else
+        {
+            PlayerPrefs.DeleteAll();
+            Debug.Log("Deleted Prefs..");
+            SceneManager.LoadScene(0);
+        }
+
     }
     public LevelStatus GetLevelStatus(string level)
     {

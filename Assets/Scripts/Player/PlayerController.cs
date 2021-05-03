@@ -1,45 +1,38 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
-    public ScoreController scoreController;
-    public GameOverController gameOverController;
-    private LivesManager livesManager;
-    public Vector2 scale;
-    public BoxCollider2D m_collider;
-    public Animator animator;
-    private Rigidbody2D rb2d;
+    [SerializeField] private float speed;
+    [SerializeField] private float Jump;
+    [SerializeField] private BoxCollider2D m_collider;
+    [SerializeField] private Animator animator;
+    [SerializeField] private ScoreController scoreController;
+    [SerializeField] private GameOverController gameOverController;
+    [SerializeField] private LivesManager livesManager;
+    [SerializeField] private Rigidbody2D rb2d;
+    private String _JUMP_AXIS = "Jump";
+    private String _HORIZONTAL_AXIS = "Horizontal";
+    private Vector2 scale;
     private Vector3 position;
     private float _DEFX = 0.42f, _DEFY = 1.99f;
     private float _DEFOX = 0.011f, _DEFOY = 0.98f;
-    private int _KeyCounter = 0;
+    private int KeyCounter = 0;
+    private bool isJump = false;
     
     public void KillPlayer()
     {
-        //Debug.Log("Player Killed by enemy");
         gameOverController.PlayerDied();
         this.enabled = false;
     }
-    
-
-    private String _JUMP_AXIS = "Jump";
-    private String _HORIZONTAL_AXIS = "Horizontal";
     internal void PickUpKey()
     {
         Debug.Log("Player Picked up a Key.");
-        _KeyCounter++;
+        SoundManager.Instance.PlayOnce(SoundsForEvents.KeyPickup);
+        KeyCounter++;
         scoreController.IncreaseScore(10);
-        Debug.Log("Key Collected: " + _KeyCounter);
+        Debug.Log("Key Collected: " + KeyCounter);
     }
-
-    [SerializeField] private float speed;
-    [SerializeField] private float Jump;
-    private bool isJump = false;
-    
     public void OnCollisionEnter2D(Collision2D collision)
     {
         //Debug.Log("Entered into Collision");
@@ -48,17 +41,9 @@ public class PlayerController : MonoBehaviour
             isJump = true;
         }
     }
-
-    private void Awake()
-    {
-        rb2d = gameObject.GetComponent<Rigidbody2D>();
-        
-    }
     private void Start()
     {
-        livesManager = FindObjectOfType<LivesManager>();
         scale = transform.localScale;
-        m_collider = GetComponent<BoxCollider2D>();
         m_collider.size = new Vector2(0.42f, 1.99f);
     }
     private void Update()
@@ -67,7 +52,6 @@ public class PlayerController : MonoBehaviour
         float vertical = Input.GetAxisRaw(_JUMP_AXIS);
         float horizontal = Input.GetAxisRaw(_HORIZONTAL_AXIS);
         position = transform.position;
-
         PlayMovementAnimation(horizontal, vertical);
         ControlBtnCrouch(Crouch);
         ResizeCollider(Crouch);
@@ -80,10 +64,10 @@ public class PlayerController : MonoBehaviour
         float characterDeadLine = -8f;
         if(position.y < characterDeadLine)
         {
-            livesManager.recX = 5.43f;
-            livesManager.recY = -2.37f;
+            SoundManager.Instance.PlayOnce(SoundsForEvents.PlayerKilled);
+            livesManager.recX = -1.5f;
+            livesManager.recY = -2f;
             livesManager.TakeLife();
-            //SceneManager.LoadScene(1);
         }
     }
 
@@ -94,15 +78,27 @@ public class PlayerController : MonoBehaviour
         position.x += horizontal * speed * Time.deltaTime;
         transform.position = position;
     }
+    private void PlayJumpSound()
+    {
+        SoundManager.Instance.PlayOnce(SoundsForEvents.PlayerJump);
+    }
+    private void PlayStepJumpSound()
+    {
+        SoundManager.Instance.PlayOnce(SoundsForEvents.PlayerStepJump);
+    }
+    private void PlayStepJumpLandSound()
+    {
+        SoundManager.Instance.PlayOnce(SoundsForEvents.PlayerStepJumpLand);
+    }
 
     private void PlayMovementAnimation(float horizontal, float vertical)
-    {
+    {        
         // Get Input from Left Right keys and Run on that sides
         animator.SetFloat("Speed", Mathf.Abs(horizontal));
         scale.x = horizontal < 0 ? -1f * Mathf.Abs(scale.x) : Mathf.Abs(scale.x) ;
         transform.localScale = scale;
 
-        // Get Input from Up down keys and Run Jump Animations
+        // Get Input from Spacebar key and Run Jump Animations
         if (vertical > 0 && isJump)
         {
             animator.SetBool("Jump", isJump);

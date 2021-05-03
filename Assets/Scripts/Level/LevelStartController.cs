@@ -6,9 +6,10 @@ public class LevelStartController : MonoBehaviour
 {
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.GetComponent<PlayerController>())
+        PlayerController playerController = collision.gameObject.GetComponent<PlayerController>();
+        if (playerController)
         {
-            Debug.Log("Player start 1(this) level");
+            Debug.Log("Player start level");
             Destroy(gameObject);
         }
     }

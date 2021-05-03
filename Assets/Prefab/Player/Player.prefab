@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 519420032}
   - component: {fileID: 519420031}
-  - component: {fileID: 519420029}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -75,14 +74,6 @@ Camera:
   m_OcclusionCulling: 0
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!81 &519420029
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 519420028}
-  m_Enabled: 0
 --- !u!1 &5077761964698362273
 GameObject:
   m_ObjectHideFlags: 0
@@ -247,10 +238,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fd8d8a0616571345b10c226ee257f24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scoreController: {fileID: 0}
-  gameOverController: {fileID: 0}
-  scale: {x: 0, y: 0}
-  m_collider: {fileID: 7295334108173403097}
-  animator: {fileID: 7295334108173403095}
   speed: 8
   Jump: 1200
+  m_collider: {fileID: 7295334108173403097}
+  animator: {fileID: 7295334108173403095}
+  scoreController: {fileID: 0}
+  gameOverController: {fileID: 0}
+  livesManager: {fileID: 0}
+  rb2d: {fileID: 7295334108173403096}
